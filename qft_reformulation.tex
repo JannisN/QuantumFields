@@ -1,0 +1,69 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+
+\title{A Reformulation of QFT for UV-Finite Perturbation Theory}
+\author{Jannis Naske}
+
+\begin{document}
+
+\maketitle
+
+The usual way of quantizing fields is known to be ill-defined.
+In some cases, this can be fixed through renormalization after formally deriving a perturbative expansion.
+This paper introduces a reformulation of the quantization process, which may actually lead to a UV-finite perturbative expansion,
+removing the need for renormalization. This reformulation is demonstrated in the $\phi^4$ theory.
+The classical Hamiltonian formulation for this theory is given by
+\begin{equation}\begin{gathered}
+    H = \int d^nx \,\, \frac{1}{2} \pi^2(x) + \frac{1}{2} (\nabla\phi)^2(x) + \frac{1}{2} m^2\phi^2(x) + \frac{\lambda}{4!} \phi^4(x),\\
+    \{\phi(x),\,\pi(y)\} = \delta(x - y), \quad \frac{\partial O(x)}{\partial t} = \{H,\,O(x)\},
+\end{gathered}\end{equation}
+where $O(x)$ is some function of $\phi(x)$ and $\pi(x)$. This is well defined, as there is one delta distribution per integral.
+The equation of motion for $\phi$ is then
+\begin{equation}\label{phi4}
+    \frac{\partial^2}{\partial t^2} \phi(x) = \nabla^2\phi(x) - \frac{\lambda}{6} \phi^3(x).
+\end{equation}
+In the quantum theory, the fields are promoted to operators and the Poisson bracket to the commutator,
+\begin{equation}
+    [\phi(x),\,\pi(y)] = i\delta(x - y), \quad \frac{\partial O(x)}{\partial t} = i[H,\,O(x)].
+\end{equation}
+As an operator equation, (\ref{phi4}) still holds for $\phi(x)$. This is however no longer well defined,
+as there may be additional delta functions per integral, as the field operators no longer commute.
+This can be seen for example by Taylor expanding $\phi(x)$ in $t$.
+The following proposition for a different formulation at least formally fixes this issue.
+Assuming the relevant operators are integrals of polynomials of local operators, e.g. for $H$
+\begin{equation}
+    H = \int d^nx \,\, H(x),
+\end{equation}
+one introduces two commutators, one for local operators and one for global or smeared out operators:
+\begin{equation}
+    \begin{gathered}
+        \left[ \int d^nx \,\, O_1(x), \, \int d^nx \,\, O_2(x) \right] := \int d^nx \,\, \left[ O_1(x), \, O_2(x) \right]_{loc},\\
+        \left[ \phi(x), \, \pi(y) \right]_{loc} := i\delta_{x,y}.
+    \end{gathered}
+\end{equation}
+Note that $\delta_{x,y}$ is now the Kronecker delta and not a distribution.
+If one then smears out $\phi(x)$ and $\pi(x)$, this prescription reproduces (\ref{phi4}).
+Now however, the Taylor expansion of $\phi$ in time does not produce additional delta distributions.
+Another way of formally achieving the same thing is to convert the integral in $H$ to a sum and the delta distribution to a Kronecker delta,
+\begin{equation}\begin{gathered}
+    H = \sum_{x\in \mathbb{R}^n} \,\, \frac{1}{2} \pi^2(x) + \frac{1}{2} (\nabla\phi)^2(x) + \frac{1}{2} m^2\phi^2(x) + \frac{\lambda}{4!} \phi^4(x),\\
+    \left[\phi(x),\,\pi(y)\right] = i\delta_{x, y}, \quad \frac{\partial O(x)}{\partial t} = \left[H,\,O(x)\right].
+\end{gathered}\end{equation}
+Now, in order to actually make sense of these prescriptions, one has to show that they can be defined rigorously.
+One way of doing this is to regularize the Hamiltonian by considering a lattice approximation of the theory,
+and then taking the limit as the lattice spacing tends to zero. For example, in one spacial dimension with a periodic boundary $\phi(N) = \phi(0)$ for simplicity, one gets
+\begin{equation}
+    H = \sum_{x = 0}^{N-1} \,\, \frac{1}{2} \pi^2(x) - \frac{1}{2} N^2 \phi(x)\left( \phi(x+1) - 2\phi(x) + \phi(x-1) \right) + \frac{1}{2} m^2\phi^2(x) + \frac{\lambda}{4!} \phi^4(x).
+\end{equation}
+While the spacial dimensions are discretized, time will remain continuous.\\\\
+At the time of writing, it is not clear to me at all whether this reformulation can reproduce the usual renormalized perturbation theory,
+or whether this even achieves anything at all. However, at least for the 1-loop Feynman diagram for the two particle interaction,
+it seems that this method renders the loop UV-finite in the $N \rightarrow \infty$ limit,
+and that the diagram actually converges to a non zero value, even in three spacial dimensions!
+I will definitely give an update on this once I've made some major progress. I'm especially interested if
+this method could be used in connection with constructive QFT.
+
+\end{document}
